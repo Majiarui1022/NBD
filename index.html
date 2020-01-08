@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>NBD 底盘实验室</title>
+		<link rel="stylesheet" type="text/css" href="style/public.css"/>
+		<link rel="stylesheet" type="text/css" href="style/index.css"/>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	
+	<body>
+		<div class="index-box">
+			<div class="tit">
+				<img src="img/ip.png" class="fl" alt="">
+				<div class="select_ip fl">
+					<input type="text" placeholder="填写或选择IP地址">
+					<div class="input_top" onclick="changeSelect()">
+						<span id="three"></span>
+					</div>
+					
+					<div class="select_list">
+						<span></span>
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	
+	//public data
+	let SelectStatus = false; 			//data one is changeIP select
+	
+	
+	function changeSelect(){
+		let SelectList = document.getElementsByClassName('select_list')[0];
+		let SpanTrasiton = document.getElementById("three")
+		console.log(SpanTrasiton)
+		SelectStatus = !SelectStatus
+		if(SelectStatus){
+			SelectList.style.opacity = 1;
+			SpanTrasiton.style.transform  = 'rotateZ(-180deg)';
+		}else{
+			SelectList.style.opacity = 0;
+			SpanTrasiton.style.transform  = 'rotateZ(0deg)';
+		}
+	}
+</script>
