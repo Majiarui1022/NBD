@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>NBD 底盘试验室</title>
+		<link rel="stylesheet" type="text/css" href="style/public.css"/>
+		<link rel="stylesheet" type="text/css" href="style/file.css"/>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	</head>
+	<body>
+		<div class="file-s">
+			<div class="tit-name">MTS 减震测试台</div>
+			<div class="tit">
+				<img src="img/search.png" class="fl" alt="">
+				<div class="select_ip fl">
+					<input type="text" placeholder="搜索关键字" id="searchInit">
+				</div>
+				<div class="select_ip fl">
+					<input type="text" placeholder="填写或选择IP地址" id="IPvalue"  onkeyup="getIP()"  onclick="changeSelectTwo()">
+					<!-- <div class="input_top"> -->
+						<span id="three_IP" class="IPThree"></span>
+					<!-- </div> -->
+					
+					<div class="select_list select_list_IP">
+						<span></span>
+						<div class="select_box">
+							<ul id="IPList">
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="fl active_but" onclick="SearchList()">确定</div>
+				<img src="img/ip.png" class="fr" alt="" onclick="golocal()">
+			</div>
+			
+			<!-- 主体 -->
+			<div class="menu-list">
+				<ul id="TabMsgList">
+				</ul>
+				<div class="bot-btn">
+				  <p>设备管理：资源保障处装备技术模块</p>
+				  <p>负责人：杨春辉</p>
+				</div>
+			</div>
+			
+			<!-- 操作 -->
+			<div class="footer">
+				<div class="cal fl">
+					<span class="fl">添加文件路径</span>
+					<input type="text" class="fl" id="FileUrl">
+					<div class="fl fot-but" onclick="AddFileUrl()">确认</div>
+				</div>
+				<div class="cal fl">
+					<span class="fl">文件选择</span>
+					<div class="select-flie fl">
+						<input type="text" id="FILEval">
+						<div class="input_top" onclick="changeSelect()">
+							<span id="three"></span>
+						</div>
+						
+						
+						<div class="select_list">
+							<span></span>
+							<div class="select_box">
+								<ul id="fileList">
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="fl fot-remove" onclick="removeFile()">删除</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script src="js/file.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	
+	//public data
+	let SelectStatus = false; 			//data one is changeIP select
+	let SelectStatusTwo = false
+	
+	function changeSelect(){
+		let SelectListTwo = document.getElementsByClassName('select_list')[1];
+		let SpanTrasiton = document.getElementById("three")
+		SelectStatus = !SelectStatus
+		if(SelectStatus){
+			SelectListTwo.style.opacity = 1;
+			SelectListTwo.style.display = "block"
+			SpanTrasiton.style.transform  = 'rotateZ(-180deg)';
+		}else{
+			SelectListTwo.style.opacity = 0;
+			SelectListTwo.style.display = "none"
+			SpanTrasiton.style.transform  = 'rotateZ(0deg)';
+		}
+		// if(SelectStatusTwo){
+		// 	changeSelectTwo()
+		// }
+		 event.stopPropagation();    //  阻止事件冒泡
+	}
+	
+	function changeSelectTwo(){
+		let SelectList = document.getElementsByClassName('select_list')[0];
+		let SpanTrasiton = document.getElementById("three_IP")
+		SelectStatusTwo = !SelectStatusTwo
+		if(SelectStatusTwo){
+			SelectList.style.opacity = 1;
+			SelectList.style.display = "block"
+			SpanTrasiton.style.transform  = 'rotateZ(-180deg)';
+		}else{
+			SelectList.style.opacity = 0;
+			SelectList.style.display = "none"
+			SpanTrasiton.style.transform  = 'rotateZ(0deg)';
+		}
+		// if(SelectStatus){
+		// 	changeSelect()
+		// }
+		 event.stopPropagation();    //  阻止事件冒泡
+	}
+	
+	
+	$(document).bind("click", function () {
+		let SpanTrasiton = document.getElementById("three")
+		let SpanTrasitontWO = document.getElementById("three_IP")
+		let SelectList = document.getElementsByClassName('select_list')[0];
+		let SelectListTwo = document.getElementsByClassName('select_list')[1];
+		
+		SelectList.style.opacity = 0;
+		SelectList.style.display = "none"
+		SpanTrasiton.style.transform  = 'rotateZ(0deg)';
+		
+		
+		SelectListTwo.style.opacity = 0;
+		SelectListTwo.style.display = "none"
+		SpanTrasitontWO.style.transform  = 'rotateZ(0deg)';
+		SelectStatus = SelectStatusTwo = false
+	});
+	
+</script>

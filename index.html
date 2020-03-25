@@ -2,11 +2,26 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>NBD 底盘实验室</title>
+		<title>NBD 底盘试验室</title>
+		<style type="text/css">
+		  .bot-btn{
+			width:294px;
+			height:50px;
+			background:linear-gradient(0deg,rgba(190,190,190,1) 0%,rgba(190,190,190,1) 0%,rgba(235,241,241,1) 53%,rgba(190,190,190,1) 100%);
+			position: absolute;
+			left: 16px;
+			bottom: 20px;
+		  }
+		  .bot-btn p{
+			  font-size:16px;
+			  color:rgba(51,51,51,1);
+			  line-height:25px;
+			}
+		</style>
 		<link rel="stylesheet" type="text/css" href="style/public.css"/>
 		<link rel="stylesheet" type="text/css" href="style/index.css"/>
+		<script type="text/javascript" src="https://cdn.bootcss.com/echarts/4.1.0/echarts-en.common.js"></script>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-		<script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	
 	<body>
@@ -14,22 +29,90 @@
 			<div class="tit">
 				<img src="img/ip.png" class="fl" alt="">
 				<div class="select_ip fl">
-					<input type="text" placeholder="填写或选择IP地址">
-					<div class="input_top" onclick="changeSelect()">
+					<input type="text" placeholder="填写或选择IP地址" id="IPvalue" onkeyup="getIP()" onclick="changeSelect()">
+					<!-- <div class="input_top"> -->
 						<span id="three"></span>
-					</div>
+					<!-- </div> -->
 					
 					<div class="select_list">
 						<span></span>
+						<div class="select_box">
+							<ul id="IPList">
+							</ul>
+						</div>
 					</div>
 				</div>
+				<div class="fl active_but" onclick="connectSrver()">确定</div>
+				<img src="img/search.png" class="fr" alt="" onclick="Gofile()">
 			</div>
 			<div class="content">
-				
+				<div class="left fl">
+					<p class="left-tit">NBD 底盘试验室</p>
+					<div class="image-box fl"></div>
+					<div class="menu fl">
+						<p class="menu-tit">设备状态</p>
+						<div class="status-fat">
+							<div class="status-left fl">
+								<div class="row fl">
+									<img src="img/runed.png" alt="" id="running">
+									<p>运行</p>
+									<div class="status-quan" id="runn"></div>
+								</div>
+								<div class="row fl">
+									<img src="img/stoped.png" alt="" id="stoping">
+									<p>停止</p>
+									<div class="status-quan" id="stop"></div>
+								</div>
+							</div>
+							<div class="status-right fl">
+								<div class="row fl">
+									<img src="img/suced.png" alt="" id="sucing">
+									<p>正常</p>
+									<div class="status-quan" id="suc"></div>
+								</div>
+								<div class="row fl">
+									<img src="img/warning.png" alt="" id="warning">
+									<p>报警</p>
+									<div class="status-quan" id="warn"></div>
+								</div>
+								<div class="row fl">
+									<img src="img/erred.png" alt="" id="erring">
+									<p>故障</p>
+									<div class="status-quan" id="errors"></div>
+								</div>
+							</div>
+						</div>
+						<p class="menu-tit">项目状态</p>
+						<p class="menu-tit menu-tit-T">项目名称</p>
+						<div class="name" id="proname"></div>
+						<p class="menu-tit menu-tit-T">项目进度</p>
+						<div class="project-J">
+							<div class="project-tit" id="projectTit">0%</div>
+							<div class="clier">
+								<div class="jin"></div>
+							</div>
+						</div>
+						<div style="width: 351px;height:1px;background:rgba(225,234,248,1);margin: 15px 0;"></div>
+						<p class="menu-tit">状态说明</p>
+						<div class="text-area" id="errorWords">
+							
+						</div>
+					</div>
+				</div>
+				<div class="right fl">
+					<div class="ECharts-F">
+						<div id="Charts"></div>
+					</div>
+				</div>
+				<div class="bot-btn">
+				  <p>设备管理：资源保障处装备技术模块</p>
+				  <p>负责人：杨春辉</p>
+				</div>
 			</div>
 		</div>
 	</body>
 </html>
+<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	
 	//public data
@@ -39,14 +122,31 @@
 	function changeSelect(){
 		let SelectList = document.getElementsByClassName('select_list')[0];
 		let SpanTrasiton = document.getElementById("three")
-		console.log(SpanTrasiton)
 		SelectStatus = !SelectStatus
 		if(SelectStatus){
 			SelectList.style.opacity = 1;
+			SelectList.style.display = "block"
 			SpanTrasiton.style.transform  = 'rotateZ(-180deg)';
 		}else{
 			SelectList.style.opacity = 0;
 			SpanTrasiton.style.transform  = 'rotateZ(0deg)';
+			SelectList.style.display = "none"
 		}
+		
+		 event.stopPropagation();    //  阻止事件冒泡
+		
 	}
+	
+	$(document).bind("click", function () {
+		let SelectList = document.getElementsByClassName('select_list')[0];
+		let SpanTrasiton = document.getElementById("three")
+		
+		SelectList.style.opacity = 0;
+		SelectList.style.display = "none"
+		SpanTrasiton.style.transform  = 'rotateZ(0deg)';
+		SelectStatus = SelectStatusTwo = false
+	});
+	
+	
+	
 </script>
