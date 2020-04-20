@@ -2,11 +2,11 @@
 	width: 1366px;
 	height: 768px;
 	background: #BBD3F5;
-	position: fixed;
+	/* position: fixed;
 	top: 50%;
 	left: 50%;
 	margin-top:-348px;
-	margin-left:-683px;
+	margin-left:-683px; */
 }
 .tit-name{
 	width: 100%;
@@ -218,6 +218,7 @@
 	top: 52px;
 	transition: opacity .2s;
 	opacity: 0;
+	z-index: 888;
 }
 .select_list span{
 	width: 0;

@@ -26,7 +26,7 @@ function getIP(){
 	}
 	$.ajax({
 		type: "GET",
-		url: `http://10.102.100.120:8001/pc_host/?search=${hostValue}`,
+		url: `http://47.103.129.164:7010/pc_host/?search=${hostValue}`,
 		dataType: "json",
 		success: function(data) {
 			let Dom = $("#IPList")
@@ -48,7 +48,7 @@ function getIP(){
 function getFile(){
 	$.ajax({
 		type: "GET",
-		url: `http://10.102.100.120:8001/file_path/?search=`,
+		url: `http://47.103.129.164:7010/file_path/?search=`,
 		dataType: "json",
 		success: function(data) {
 			let Dom = $("#fileList")
@@ -79,7 +79,7 @@ function AddFileUrl(){
 	}
 	$.ajax({
 		type: "POST",
-		url: `http://10.102.100.120:8001/file_path/`,
+		url: `http://47.103.129.164:7010/file_path/`,
 		dataType: "json",
 		data: data,
 		success: function(data) {
@@ -95,7 +95,7 @@ function removeFile(){
 	if(PublicData.fileID === 0)return
 	$.ajax({
 		type: "DELETE",
-		url: `http://10.102.100.120:8001/file_path/${PublicData.fileID}/`,
+		url: `http://47.103.129.164:7010/file_path/${PublicData.fileID}/`,
 		dataType: "json",
 		success: function(data) {
 			$("#FILEval").val('');
@@ -124,7 +124,7 @@ function SearchList(){
 	
 	$.ajax({
 		type: "POST",
-		url: `http://10.102.100.120:8001/websocket/find/`,
+		url: `http://47.103.129.164:7010/websocket/find/`,
 		dataType: "json",
 		data: obj,
 		success: function(data) {
@@ -154,7 +154,7 @@ $("#fileList").on("click",".FileCon",function(){
 //    websocket
 
 
-var ws = new WebSocket("ws://10.102.100.120:8001/project/brower/");
+var ws = new WebSocket("ws://47.103.129.164:7010/project/brower/");
 
 ws.onopen = function(evt) {  //绑定连接事件
 };
